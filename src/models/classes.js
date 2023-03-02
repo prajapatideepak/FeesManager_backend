@@ -23,8 +23,9 @@ const classes = new mongoose.Schema({
         type: Number,
         required: [true, 'Please enter fees'],
     },
-    is_primary:{
-        type: Number,
+    branch:{
+        type: mongoose.Schema.ObjectId,
+        ref: "branches",
         required: true,
     },
     stream:{
