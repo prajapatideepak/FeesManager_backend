@@ -80,59 +80,59 @@ const generateReceiptFunction = async (
     const fees_receipt_id = fees_receipts.length + salary_receipts.length + 1 + 1000;
     
     let fromMonth="0", toMonth="0";
-    let lastPaidYear = 0;
+    // let lastPaidYear = 0;
 
     
-    if(academic_details.class_id.is_primary){
-      if(last_paid == '-1'){
-        lastPaidYear = new Date(date).getFullYear()
-      }
-      else{
-        lastPaidYear = Number(last_paid.split(" ")[1])
-      }
+    // if(academic_details.class_id.is_primary){
+    //   if(last_paid == '-1'){
+    //     lastPaidYear = new Date(date).getFullYear()
+    //   }
+    //   else{
+    //     lastPaidYear = Number(last_paid.split(" ")[1])
+    //   }
 
-      let lastPaid = Number(last_paid.split(" ")[0]);
+    //   let lastPaid = Number(last_paid.split(" ")[0]);
 
-      if(lastPaid == -1){
-        lastPaid = new Date(academic_details.date).getMonth() + 1;
-      }
+    //   if(lastPaid == -1){
+    //     lastPaid = new Date(academic_details.date).getMonth() + 1;
+    //   }
     
-      fromMonth = Number(last_paid.split(" ")[0]) == -1 // If first time payment
-                  ?
-                    `${lastPaid}` + " " + `${lastPaidYear}`
-                  :
-                    lastPaid == 12
-                      ?
-                        `1 ${lastPaidYear + 1}`
-                      : 
-                        `${lastPaid + 1}` + " " + `${lastPaidYear}`
+    //   fromMonth = Number(last_paid.split(" ")[0]) == -1 // If first time payment
+    //               ?
+    //                 `${lastPaid}` + " " + `${lastPaidYear}`
+    //               :
+    //                 lastPaid == 12
+    //                   ?
+    //                     `1 ${lastPaidYear + 1}`
+    //                   : 
+    //                     `${lastPaid + 1}` + " " + `${lastPaidYear}`
   
-      toMonth = Number(last_paid.split(" ")[0]) == -1 // If first time payment
-                ?
-                  ( ( lastPaid + Number(total_months) ) - 1 ) % 12 == 0
-                  ?
-                    `12 ${lastPaidYear}`
-                  :
-                    ( ( lastPaid + Number(total_months) ) - 1 ) > 12
-                    ?
-                      `${( ( lastPaid + Number(total_months) ) - 1 ) % 12}` + " " + `${lastPaidYear + 1}`
-                    :
-                      `${( ( lastPaid + Number(total_months) ) - 1 ) % 12}` + " " + `${lastPaidYear}`
-                :
-                  lastPaid == 12 // If last paid is upto 12 month
-                  ? 
-                    `${(lastPaid + Number(total_months)) % 12}` + " " + `${lastPaidYear + 1}`
-                  : 
-                    lastPaid + Number(total_months) > 12
-                    ?
-                      `${(lastPaid + Number(total_months)) % 12}` + " " + `${lastPaidYear + 1}`
-                    :
-                      (lastPaid + Number(total_months)) % 12 == 0
-                      ?
-                        `12 ${lastPaidYear}`
-                      :
-                        `${(lastPaid + Number(total_months)) % 12}` + " " + `${lastPaidYear}`
-    }
+    //   toMonth = Number(last_paid.split(" ")[0]) == -1 // If first time payment
+    //             ?
+    //               ( ( lastPaid + Number(total_months) ) - 1 ) % 12 == 0
+    //               ?
+    //                 `12 ${lastPaidYear}`
+    //               :
+    //                 ( ( lastPaid + Number(total_months) ) - 1 ) > 12
+    //                 ?
+    //                   `${( ( lastPaid + Number(total_months) ) - 1 ) % 12}` + " " + `${lastPaidYear + 1}`
+    //                 :
+    //                   `${( ( lastPaid + Number(total_months) ) - 1 ) % 12}` + " " + `${lastPaidYear}`
+    //             :
+    //               lastPaid == 12 // If last paid is upto 12 month
+    //               ? 
+    //                 `${(lastPaid + Number(total_months)) % 12}` + " " + `${lastPaidYear + 1}`
+    //               : 
+    //                 lastPaid + Number(total_months) > 12
+    //                 ?
+    //                   `${(lastPaid + Number(total_months)) % 12}` + " " + `${lastPaidYear + 1}`
+    //                 :
+    //                   (lastPaid + Number(total_months)) % 12 == 0
+    //                   ?
+    //                     `12 ${lastPaidYear}`
+    //                   :
+    //                     `${(lastPaid + Number(total_months)) % 12}` + " " + `${lastPaidYear}`
+    // }
                       
     const fees_receipt_details = await FeesReceipt.create({
       fees_receipt_id,
